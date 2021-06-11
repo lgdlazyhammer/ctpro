@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.lgd.ctpro.core.entity.CtproAction;
 import com.lgd.ctpro.core.entity.CtproExecution;
 import com.lgd.ctpro.core.entity.CtproOrder;
@@ -22,45 +25,47 @@ import com.lgd.ctpro.core.tools.EncryptTool;
  *
  */
 public class TestThreadPool {
+	
+	private static Logger logger = LogManager.getLogger(TestThreadPool.class);
 
 	public static void main(String[] args) {
 
         CtproOrder ctproOrder = new CtproOrder();
         ctproOrder.setOrderMsg("第个一命令");
         String orderid = EncryptTool.getMD5ByBase64(ctproOrder.getOrderMsg());
-        System.out.println("第一个命令的ID：" + orderid);
+        logger.debug("第一个命令的ID：" + orderid);
         
         CtproTask ctproTask = new CtproTask();
         ctproTask.setTaskMsg("第一个任务");
         String taskid = EncryptTool.getMD5ByBase64(ctproTask.getTaskMsg());
-        System.out.println("第一个任务的ID：" + taskid);
+        logger.debug("第一个任务的ID：" + taskid);
         ctproTask.setStep(1);
         
         CtproTask ctproTask2 = new CtproTask();
         ctproTask2.setTaskMsg("第二个任务");
         String taskid2 = EncryptTool.getMD5ByBase64(ctproTask2.getTaskMsg());
-        System.out.println("第二个任务的ID：" + taskid2);
+        logger.debug("第二个任务的ID：" + taskid2);
         ctproTask2.setStep(2);
         
         CtproExecution ctproExecution = new CtproExecution();
         ctproExecution.setExecutionMsg("第一个执行对象");
         String executionid = EncryptTool.getMD5ByBase64(ctproExecution.getExecutionMsg());
-        System.out.println("第一个执行对象的ID：" + executionid);
+        logger.debug("第一个执行对象的ID：" + executionid);
         
         CtproExecution ctproExecution2 = new CtproExecution();
         ctproExecution2.setExecutionMsg("第二个执行对象");
         String executionid2 = EncryptTool.getMD5ByBase64(ctproExecution2.getExecutionMsg());
-        System.out.println("第二个执行对象的ID：" + executionid2);
+        logger.debug("第二个执行对象的ID：" + executionid2);
         
         CtproAction ctproAction = new CtproAction();
         ctproAction.setActionMsg("第一个执行动作对象");
         String actionid = EncryptTool.getMD5ByBase64(ctproAction.getActionMsg());
-        System.out.println("第一个执行动作对象的ID：" + actionid);
+        logger.debug("第一个执行动作对象的ID：" + actionid);
         
         CtproAction ctproAction2 = new CtproAction();
         ctproAction2.setActionMsg("第二个执行动作对象");
         String actionid2 = EncryptTool.getMD5ByBase64(ctproAction2.getActionMsg());
-        System.out.println("第二个执行动作对象的ID：" + actionid2);
+        logger.debug("第二个执行动作对象的ID：" + actionid2);
         
         ctproExecution.setExecutionAction(actionid);
         ctproExecution2.setExecutionAction(actionid2);

@@ -1,6 +1,11 @@
 package com.lgd.ctpro.rbtree;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class RBTreeManager {
+	
+	private static Logger logger = LogManager.getLogger(RBTreeManager.class);
 
 	static TreeNode rootNode;
 	final static private String BLACK = "B";
@@ -13,8 +18,8 @@ public class RBTreeManager {
 		treeNode.setNodeRed();
 		treeNode.setLeftNode(null);
 		treeNode.setRightNode(null);
-		System.out.println("");
-		System.out.println("增加节点开始：" + treeNode);
+		logger.debug("");
+		logger.debug("增加节点开始：" + treeNode);
 		
 		if(rootNode == null){
 			rootNode = treeNode;
@@ -33,21 +38,21 @@ public class RBTreeManager {
 			}
 			
 		}
-		System.out.println("增加节点结束 -------------------");
-		System.out.println("增加节点结束：" + treeNode);
-		System.out.println("增加节点结束，当前节点父节点为：" + treeNode.getParentNode());
-		System.out.println("增加节点结束，当前节点左子节点为：" + treeNode.getLeftNode());
-		System.out.println("增加节点结束，当前节点右子节点为：" + treeNode.getRightNode());
-		System.out.println("增加节点结束，当前根节点为：" + rootNode);
-		System.out.println("增加节点结束，当前根节点左子节点为：" + rootNode.getLeftNode());
-		System.out.println("增加节点结束，当前根节点右子节点为：" + rootNode.getRightNode());
-		System.out.println("增加节点结束 -------------------");
+		logger.debug("增加节点结束 -------------------");
+		logger.debug("增加节点结束：" + treeNode);
+		logger.debug("增加节点结束，当前节点父节点为：" + treeNode.getParentNode());
+		logger.debug("增加节点结束，当前节点左子节点为：" + treeNode.getLeftNode());
+		logger.debug("增加节点结束，当前节点右子节点为：" + treeNode.getRightNode());
+		logger.debug("增加节点结束，当前根节点为：" + rootNode);
+		logger.debug("增加节点结束，当前根节点左子节点为：" + rootNode.getLeftNode());
+		logger.debug("增加节点结束，当前根节点右子节点为：" + rootNode.getRightNode());
+		logger.debug("增加节点结束 -------------------");
 	}
 	
 	// 刷新树方法
 	public static synchronized void refreshTreeForAddMehtod(TreeNode treeNode){
 
-		System.out.println("增加刷新树开始，当前节点为：" + treeNode);
+		logger.debug("增加刷新树开始，当前节点为：" + treeNode);
 		// 当前节点为根节点
 		if(treeNode.getParentNode() == null){
 			// 当前节点为根节点，重置根节点为黑色
@@ -56,8 +61,8 @@ public class RBTreeManager {
 			return;
 		}
 		TreeNode parentNode = treeNode.getParentNode();
-		System.out.println("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
-		System.out.println("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
+		logger.debug("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
+		logger.debug("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
 		TreeNode grandParentNode = null;
 		if(parentNode != null){
 			grandParentNode = parentNode.getParentNode();
@@ -106,10 +111,10 @@ public class RBTreeManager {
 						// parentNode.setNodeRed();
 						// grandParentNode.setNodeBlack();
 						treeNode.setNodeBlack();
-						System.out.println("右旋结束");
-						System.out.println("当前节点父节点为：" + treeNode.getParentNode());
-						System.out.println("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
-						System.out.println("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
+						logger.debug("右旋结束");
+						logger.debug("当前节点父节点为：" + treeNode.getParentNode());
+						logger.debug("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
+						logger.debug("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
 						// 以当前父节点为新增节点刷新树
 						refreshTreeForAddMehtod(parentNode);
 						return;
@@ -150,11 +155,11 @@ public class RBTreeManager {
 						// treeNode.setNodeRed();
 						// grandParentNode.setNodeBlack();
 						parentNode.setNodeBlack();
-						System.out.println("节点为父节点右节点，右旋结束");
-						System.out.println("当前节点父节点为：" + treeNode.getParentNode());
+						logger.debug("节点为父节点右节点，右旋结束");
+						logger.debug("当前节点父节点为：" + treeNode.getParentNode());
 						if(treeNode.getParentNode() != null){
-							System.out.println("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
-							System.out.println("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
+							logger.debug("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
+							logger.debug("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
 						}
 						// 以当前父节点为新增节点刷新树
 						refreshTreeForAddMehtod(treeNode);
@@ -185,10 +190,10 @@ public class RBTreeManager {
 						// parentNode.setNodeRed();
 						// grandParentNode.setNodeBlack();
 						treeNode.setNodeBlack();
-						System.out.println("左旋结束");
-						System.out.println("当前节点父节点为：" + treeNode.getParentNode());
-						System.out.println("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
-						System.out.println("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
+						logger.debug("左旋结束");
+						logger.debug("当前节点父节点为：" + treeNode.getParentNode());
+						logger.debug("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
+						logger.debug("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
 						// 以当前父节点为新增节点刷新树
 						refreshTreeForAddMehtod(parentNode);
 						return;
@@ -231,10 +236,10 @@ public class RBTreeManager {
 						// treeNode.setNodeRed();
 						// grandParentNode.setNodeBlack();
 						parentNode.setNodeBlack();
-						System.out.println("节点为父节点左子节点，左旋结束");
-						System.out.println("当前节点父节点为：" + treeNode.getParentNode());
-						System.out.println("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
-						System.out.println("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
+						logger.debug("节点为父节点左子节点，左旋结束");
+						logger.debug("当前节点父节点为：" + treeNode.getParentNode());
+						logger.debug("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
+						logger.debug("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
 						// 以当前父节点为新增节点刷新树
 						refreshTreeForAddMehtod(treeNode);
 						return;
@@ -264,8 +269,8 @@ public class RBTreeManager {
 	// 删除节点方法
 	public static synchronized void deleteNode(TreeNode treeNode){
 
-		System.out.println("");
-		System.out.println("删除节点开始：" + treeNode);
+		logger.debug("");
+		logger.debug("删除节点开始：" + treeNode);
 		
 		if(rootNode == null){
 			return;
@@ -463,17 +468,17 @@ public class RBTreeManager {
 				refreshTreeWithDoubleColorNode(doubleColorNode);
 			}
 		}
-		System.out.println("删除节点结束 -------------------");
-		System.out.println("删除节点结束：" + treeNode);
-		System.out.println("删除节点结束，当前节点父节点为：" + treeNode.getParentNode());
-		System.out.println("删除节点结束，当前节点左子节点为：" + treeNode.getLeftNode());
-		System.out.println("删除节点结束，当前节点右子节点为：" + treeNode.getRightNode());
-		System.out.println("删除节点结束，当前根节点为：" + rootNode);
+		logger.debug("删除节点结束 -------------------");
+		logger.debug("删除节点结束：" + treeNode);
+		logger.debug("删除节点结束，当前节点父节点为：" + treeNode.getParentNode());
+		logger.debug("删除节点结束，当前节点左子节点为：" + treeNode.getLeftNode());
+		logger.debug("删除节点结束，当前节点右子节点为：" + treeNode.getRightNode());
+		logger.debug("删除节点结束，当前根节点为：" + rootNode);
 		if(rootNode != null){
-			System.out.println("删除节点结束，当前根节点左子节点为：" + rootNode.getLeftNode());
-			System.out.println("删除节点结束，当前根节点右子节点为：" + rootNode.getRightNode());
+			logger.debug("删除节点结束，当前根节点左子节点为：" + rootNode.getLeftNode());
+			logger.debug("删除节点结束，当前根节点右子节点为：" + rootNode.getRightNode());
 		}
-		System.out.println("删除节点结束 -------------------");
+		logger.debug("删除节点结束 -------------------");
 	}
 	
 	// 根据双色节点刷新树
@@ -497,8 +502,8 @@ public class RBTreeManager {
 				}
 
 				TreeNode parentNode = treeNode.getParentNode();
-				System.out.println("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
-				System.out.println("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
+				logger.debug("当前节点父节点左子节点为：" + treeNode.getParentNode().getLeftNode());
+				logger.debug("当前节点父节点右子节点为：" + treeNode.getParentNode().getRightNode());
 				// 双色节点为黑黑，固一定存在兄弟节点
 
 				TreeNode brotherNode = treeNode.getBrotherNode();

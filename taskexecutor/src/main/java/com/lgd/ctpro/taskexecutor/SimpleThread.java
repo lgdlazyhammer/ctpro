@@ -2,6 +2,9 @@ package com.lgd.ctpro.taskexecutor;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.lgd.ctpro.core.entity.CtproExecution;
 import com.lgd.ctpro.core.entity.CtproTask;
 import com.lgd.ctpro.core.service.CtproCoreServiceManager;
@@ -15,6 +18,8 @@ import com.lgd.ctpro.core.service.CtproCoreServiceManager;
  *
  */
 public class SimpleThread extends Thread {
+	
+	private static Logger logger = LogManager.getLogger(SimpleThread.class);
 
 	private boolean runningFlag;
 	private CtproTask ctproTask;
@@ -40,7 +45,7 @@ public class SimpleThread extends Thread {
 
 	public SimpleThread(int threadNumber) {
 		runningFlag = false;
-		System.out.println("thread " + threadNumber + " started!");
+		logger.debug("thread " + threadNumber + " started!");
 	}
 
 	public synchronized void run() {
@@ -60,8 +65,7 @@ public class SimpleThread extends Thread {
 				}
 			}
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getStackTrace());
 		}
 	}
 }

@@ -1,6 +1,11 @@
 package com.lgd.ctpro.rbtree;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class RBTreeMainTest {
+	
+	private static Logger logger = LogManager.getLogger(RBTreeMainTest.class);
 
 	public static void main(String[] args) {
 		
@@ -9,15 +14,15 @@ public class RBTreeMainTest {
 			tempNode.setNodeVal(formatString(String.valueOf(i)));
 			tempNode.setNodeSaveVal(String.valueOf(i));
 			
-			System.out.println("增加节点开始" + i + " ：" + System.currentTimeMillis());
+			logger.debug("增加节点开始" + i + " ：" + System.currentTimeMillis());
 			RBTreeManager.addNode(tempNode);
-			System.out.println("增加节点结束" + i + " ：" + System.currentTimeMillis());
+			logger.debug("增加节点结束" + i + " ：" + System.currentTimeMillis());
 
 			// DisplayRBTree.displayRbTree();
 		}
 		DisplayRBTree.displayRbTree();
 
-		System.out.println("删除节点开始：" + System.currentTimeMillis());
+		logger.debug("删除节点开始：" + System.currentTimeMillis());
 		for(int i=1; i<20; i++){
 			// DisplayRBTree.displayRbTree();
 			TreeNode tempNode = new TreeNode();

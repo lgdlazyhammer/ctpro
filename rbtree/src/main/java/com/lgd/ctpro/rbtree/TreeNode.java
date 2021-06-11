@@ -1,6 +1,11 @@
 package com.lgd.ctpro.rbtree;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class TreeNode {
+	
+	private static Logger logger = LogManager.getLogger(TreeNode.class);
 
 	final private String BLACK = "B";
 	final private String RED = "R";

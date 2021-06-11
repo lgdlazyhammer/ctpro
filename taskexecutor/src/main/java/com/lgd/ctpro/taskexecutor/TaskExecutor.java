@@ -1,5 +1,8 @@
 package com.lgd.ctpro.taskexecutor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.lgd.ctpro.core.entity.CtproOrder;
 
 /**
@@ -8,6 +11,8 @@ import com.lgd.ctpro.core.entity.CtproOrder;
  *
  */
 public class TaskExecutor extends Thread{
+	
+	private static Logger logger = LogManager.getLogger(TaskExecutor.class);
 
 	public static TaskExecutor instance;
 	public boolean isOn;// 任务执行器是否开启
@@ -40,8 +45,7 @@ public class TaskExecutor extends Thread{
 					ThreadPoolManager manager = new ThreadPoolManager(10);
 					manager.process(ctproOrder);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e.getStackTrace());
 				}
 			}
 		}

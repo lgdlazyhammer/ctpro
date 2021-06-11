@@ -3,7 +3,12 @@ package com.lgd.ctpro.rbtree;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class DisplayRBTree {
+	
+	private static Logger logger = LogManager.getLogger(DisplayRBTree.class);
 
 	public static void displayRbTree(){
 		
@@ -11,18 +16,19 @@ public class DisplayRBTree {
 		List<TreeNode> currentArray = new ArrayList<TreeNode>();
 		currentArray.add(rootNode);
 
-		System.out.println("----------------树结构展示开始-------------------");
+		logger.debug("----------------树结构展示开始-------------------");
 		while(currentArray != null && currentArray.size()>0){
 			boolean isEmpty = true;
 			List<TreeNode> nextArrayList = new ArrayList<TreeNode>();
+			String currentDisplayItem = "";
 			for(int i=0; i<currentArray.size(); i++){
 				
 				TreeNode currNode = currentArray.get(i);
 				if(currNode != null){
 					if(currNode.getNodeSaveVal() != null){
-						System.out.print("  " + currNode.getNodeColor() + " : " + currNode.getNodeVal() + "  ");
+						currentDisplayItem += "  " + currNode.getNodeColor() + " : " + currNode.getNodeVal() + "  ";
 					}else{
-						System.out.print("  E:~~@  ");
+						currentDisplayItem += "  E:~~@  ";
 					}
 					if(currNode.getLeftNode() != null){
 						nextArrayList.add(currNode.getLeftNode());
@@ -39,8 +45,9 @@ public class DisplayRBTree {
 						nextArrayList.add(emptyNode);
 					}
 				}
+				
 			}
-			System.out.println("  ");
+			logger.debug(currentDisplayItem);
 			if(isEmpty){
 				currentArray = null;
 			}else{
@@ -50,7 +57,7 @@ public class DisplayRBTree {
 				}
 			}
 		}
-		System.out.println("----------------树结构展示结束-------------------");
+		logger.debug("----------------树结构展示结束-------------------");
 		
 	}
 }
