@@ -1,0 +1,11 @@
+/.recommenders
+/.metadata
+/RemoteSystemsTempFiles
+/parent/target
+/parent/logs
+/core/target
+/core/logs
+/rbtree/target
+/rbtree/logs
+/taskexecutor/target
+/taskexecutor/logs
