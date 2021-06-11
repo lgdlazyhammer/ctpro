@@ -84,13 +84,19 @@ public class TestThreadPool {
         CtproCoreServiceManager.getInstance().addTask(ctproTask2);
         CtproCoreServiceManager.getInstance().addOrder(ctproOrder);
 
-		try {
+		/*try {
 			ThreadPoolManager manager = new ThreadPoolManager(10);
 			manager.process(ctproOrder);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+        
+        OrderStackManager.getInstance().addOrder(ctproOrder);
+        TaskExecutor executorThread = new TaskExecutor();
+        executorThread.startExecutor();
+        executorThread.start();
+        
 	}
 
 }

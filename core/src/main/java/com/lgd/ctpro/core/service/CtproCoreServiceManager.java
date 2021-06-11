@@ -7,6 +7,7 @@ import com.lgd.ctpro.core.entity.CtproAction;
 import com.lgd.ctpro.core.entity.CtproExecution;
 import com.lgd.ctpro.core.entity.CtproOrder;
 import com.lgd.ctpro.core.entity.CtproTask;
+import com.lgd.ctpro.core.intr.CtproActionIntr;
 import com.lgd.ctpro.core.tools.EncryptTool;
 import com.lgd.ctpro.rbtree.RBTreeManager;
 import com.lgd.ctpro.rbtree.TreeNode;
@@ -216,8 +217,7 @@ public class CtproCoreServiceManager {
 			treeNode.setNodeVal(action);
 			TreeNode treeNodeAction = actionRBTreeManager.findNode(treeNode);
 			
-			CtproAction ctproAction = (CtproAction) treeNodeAction.getNodeSaveVal();
-			
+			CtproActionIntr ctproAction = (CtproAction) treeNodeAction.getNodeSaveVal();
 			// 任务执行机进行动作执行
 			ctproAction.executeAction();
 		}

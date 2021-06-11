@@ -1,8 +1,11 @@
 package com.lgd.ctpro.core.entity;
+
+import com.lgd.ctpro.core.intr.CtproActionIntr;
+
 /*
  * 动作对象
  */
-public class CtproAction {
+public class CtproAction implements CtproActionIntr{
 
 	private String actionid;
 	private String actionMsg;
@@ -23,6 +26,7 @@ public class CtproAction {
 		this.actionMsg = actionMsg;
 	}
 	
+	// 执行任务
 	public void executeAction(){
 		
 		System.out.println("任务动作执行：" + Thread.currentThread());
