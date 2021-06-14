@@ -36,5 +36,9 @@ public class CtproAction implements CtproActionIntr{
 		
 		logger.debug("任务动作执行：" + Thread.currentThread());
 	}
-	
+
+	@Override
+	public String toString() {
+		return "CtproAction [actionid=" + actionid + ", actionMsg=" + actionMsg + "]";
+	}
 }

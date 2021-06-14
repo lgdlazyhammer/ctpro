@@ -1,18 +1,21 @@
 package com.lgd.ctpro.rbtree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class RBTreeManager {
 	
-	private static Logger logger = LogManager.getLogger(RBTreeManager.class);
+	private Logger logger = LogManager.getLogger(RBTreeManager.class);
 
-	static TreeNode rootNode;
+	private TreeNode rootNode;
 	final static private String BLACK = "B";
 	final static private String RED = "R";
 	
 	// 增加节点方法
-	public static synchronized void addNode(TreeNode treeNode){
+	public synchronized void addNode(TreeNode treeNode){
 
 		// 新插入的节点均为红色
 		treeNode.setNodeRed();
@@ -50,7 +53,7 @@ public class RBTreeManager {
 	}
 	
 	// 刷新树方法
-	public static synchronized void refreshTreeForAddMehtod(TreeNode treeNode){
+	public synchronized void refreshTreeForAddMehtod(TreeNode treeNode){
 
 		logger.debug("增加刷新树开始，当前节点为：" + treeNode);
 		// 当前节点为根节点
@@ -250,7 +253,7 @@ public class RBTreeManager {
 	}
 	
 	// 找到插入点
-	public static TreeNode findNodeOrInsertLocation(TreeNode paramNode, TreeNode startNode){
+	public TreeNode findNodeOrInsertLocation(TreeNode paramNode, TreeNode startNode){
 		
 		// 找到合适的左右节点或当前节点
 		TreeNode chooseNode = startNode.compareAndChooseChild(paramNode);
@@ -267,7 +270,7 @@ public class RBTreeManager {
 	}
 	
 	// 删除节点方法
-	public static synchronized void deleteNode(TreeNode treeNode){
+	public synchronized void deleteNode(TreeNode treeNode){
 
 		logger.debug("");
 		logger.debug("删除节点开始：" + treeNode);
@@ -482,7 +485,7 @@ public class RBTreeManager {
 	}
 	
 	// 根据双色节点刷新树
-	public static synchronized void refreshTreeWithDoubleColorNode(TreeNode treeNode){
+	public synchronized void refreshTreeWithDoubleColorNode(TreeNode treeNode){
 		
 		if(treeNode == null){
 			return;
@@ -728,7 +731,7 @@ public class RBTreeManager {
 	}
 	
 	// 寻找指定节点
-	public static TreeNode findNode(TreeNode paramNode, TreeNode startNode){
+	public TreeNode findNode(TreeNode paramNode, TreeNode startNode){
 		
 		// 找到合适的左右节点或当前节点
 		TreeNode chooseNode = startNode.compareAndChooseChild(paramNode);
@@ -745,7 +748,7 @@ public class RBTreeManager {
 	}
 	
 	// 寻找适用的替换节点
-	public static TreeNode findReplaceNode(TreeNode paramNode){
+	public TreeNode findReplaceNode(TreeNode paramNode){
 		
 		// 找到合适的替换节点
 		TreeNode chooseNode = paramNode.chooseLeftChild();
@@ -770,8 +773,107 @@ public class RBTreeManager {
 	}
 
 	// 寻找指定节点
-	public static TreeNode findNode(TreeNode paramNode){
+	public TreeNode findNode(TreeNode paramNode){
 		return findNode(paramNode, rootNode);
+	}
+	
+	// 获取数的所有节点
+	public List<TreeNode> getAllTreeNode(){
+		List<TreeNode> treeNodeAll = new ArrayList<TreeNode>();
+		TreeNode rootNodeLocal = rootNode;
+		List<TreeNode> currentArray = new ArrayList<TreeNode>();
+		currentArray.add(rootNodeLocal);
+
+		logger.debug("----------------树所有节点统计-------------------");
+		while(currentArray != null && currentArray.size()>0){
+			boolean isEmpty = true;
+			List<TreeNode> nextArrayList = new ArrayList<TreeNode>();
+			for(int i=0; i<currentArray.size(); i++){
+				
+				TreeNode currNode = currentArray.get(i);
+				if(currNode != null){
+					if(currNode.getNodeSaveVal() != null){
+						treeNodeAll.add(currNode);
+					}else{
+					}
+					if(currNode.getLeftNode() != null){
+						nextArrayList.add(currNode.getLeftNode());
+						isEmpty = false;
+					}else{
+						TreeNode emptyNode = new TreeNode();
+						nextArrayList.add(emptyNode);
+					}
+					if(currNode.getRightNode() != null){
+						nextArrayList.add(currNode.getRightNode());
+						isEmpty = false;
+					}else{
+						TreeNode emptyNode = new TreeNode();
+						nextArrayList.add(emptyNode);
+					}
+				}
+			}
+			if(isEmpty){
+				currentArray = null;
+			}else{
+				currentArray = new ArrayList<TreeNode>();
+				for(int i=0; i<nextArrayList.size(); i++){
+					currentArray.add(nextArrayList.get(i));
+				}
+			}
+		}
+		return treeNodeAll;
+	}
+	
+	// 显示树结构
+	public void displayRbTree(){
+		
+		TreeNode rootNodeLocal = rootNode;
+		List<TreeNode> currentArray = new ArrayList<TreeNode>();
+		currentArray.add(rootNodeLocal);
+
+		logger.debug("----------------树结构展示开始-------------------");
+		while(currentArray != null && currentArray.size()>0){
+			boolean isEmpty = true;
+			List<TreeNode> nextArrayList = new ArrayList<TreeNode>();
+			String currentDisplayItem = "";
+			for(int i=0; i<currentArray.size(); i++){
+				
+				TreeNode currNode = currentArray.get(i);
+				if(currNode != null){
+					if(currNode.getNodeSaveVal() != null){
+						currentDisplayItem += "  " + currNode.getNodeColor() + " : " + currNode.getNodeVal() + "  ";
+					}else{
+						currentDisplayItem += "  E:~~@  ";
+					}
+					if(currNode.getLeftNode() != null){
+						nextArrayList.add(currNode.getLeftNode());
+						isEmpty = false;
+					}else{
+						TreeNode emptyNode = new TreeNode();
+						nextArrayList.add(emptyNode);
+					}
+					if(currNode.getRightNode() != null){
+						nextArrayList.add(currNode.getRightNode());
+						isEmpty = false;
+					}else{
+						TreeNode emptyNode = new TreeNode();
+						nextArrayList.add(emptyNode);
+					}
+				}
+				
+			}
+			logger.debug(currentDisplayItem);
+			if(isEmpty){
+				currentArray = null;
+			}else{
+				currentArray = new ArrayList<TreeNode>();
+				for(int i=0; i<nextArrayList.size(); i++){
+					currentArray.add(nextArrayList.get(i));
+				}
+			}
+		}
+		logger.debug("----------------树结构展示结束-------------------");
+		
 	}
 	
 }

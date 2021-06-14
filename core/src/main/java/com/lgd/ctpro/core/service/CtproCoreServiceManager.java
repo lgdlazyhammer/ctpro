@@ -40,12 +40,12 @@ public class CtproCoreServiceManager {
 		orderRBTreeManager.addNode(treeNode);
 	}
 	
-	public static TreeNode getOrder(CtproOrder ctproOrder){
+	public static CtproOrder getOrder(CtproOrder ctproOrder){
 		// 设置命令的键
 		ctproOrder.setOrderId(EncryptTool.getMD5ByBase64(ctproOrder.getOrderMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproOrder.getOrderId());
-		return orderRBTreeManager.findNode(treeNode);
+		return (CtproOrder) orderRBTreeManager.findNode(treeNode).getNodeSaveVal();
 	}
 	
 	public static void deleteOrder(CtproOrder ctproOrder){
@@ -65,12 +65,12 @@ public class CtproCoreServiceManager {
 		taskRBTreeManager.addNode(treeNode);
 	}
 	
-	public static TreeNode getTask(CtproTask ctproTask){
+	public static CtproTask getTask(CtproTask ctproTask){
 		// 设置命令的键
 		ctproTask.setTaskid(EncryptTool.getMD5ByBase64(ctproTask.getTaskMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproTask.getTaskid());
-		return taskRBTreeManager.findNode(treeNode);
+		return (CtproTask) taskRBTreeManager.findNode(treeNode).getNodeSaveVal();
 	}
 	
 	public static void deleteTask(CtproTask ctproTask){
@@ -90,12 +90,12 @@ public class CtproCoreServiceManager {
 		executionRBTreeManager.addNode(treeNode);
 	}
 	
-	public static TreeNode getExecution(CtproExecution ctproExecution){
+	public static CtproExecution getExecution(CtproExecution ctproExecution){
 		// 设置命令的键
 		ctproExecution.setExecutionId(EncryptTool.getMD5ByBase64(ctproExecution.getExecutionMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproExecution.getExecutionId());
-		return executionRBTreeManager.findNode(treeNode);
+		return (CtproExecution) executionRBTreeManager.findNode(treeNode).getNodeSaveVal();
 	}
 	
 	public static void deleteExecution(CtproExecution ctproExecution){
@@ -115,12 +115,12 @@ public class CtproCoreServiceManager {
 		actionRBTreeManager.addNode(treeNode);
 	}
 	
-	public static TreeNode getAction(CtproAction ctproAction){
+	public static CtproAction getAction(CtproAction ctproAction){
 		// 设置命令的键
 		ctproAction.setActionid(EncryptTool.getMD5ByBase64(ctproAction.getActionMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproAction.getActionid());
-		return actionRBTreeManager.findNode(treeNode);
+		return (CtproAction) actionRBTreeManager.findNode(treeNode).getNodeSaveVal();
 	}
 	
 	public static void deleteAction(CtproAction ctproAction){
@@ -224,4 +224,23 @@ public class CtproCoreServiceManager {
 		
 	}
 	
+	// 获取命令树
+	public static RBTreeManager getOrderRBTreeManager(){
+		return orderRBTreeManager;
+	}
+	
+	// 获取任务树
+	public static RBTreeManager getTaskRBTreeManager(){
+		return taskRBTreeManager;
+	}
+	
+	// 获取执行树
+	public static RBTreeManager getExecutionRBTreeManager(){
+		return executionRBTreeManager;
+	}
+	
+	// 获取动作树
+	public static RBTreeManager getActionRBTreeManager(){
+		return actionRBTreeManager;
+	}
 }

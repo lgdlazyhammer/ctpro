@@ -19,7 +19,8 @@
 		<module>core</module>
 		<module>rbtree</module>
 		<module>taskexecutor</module>
-	</modules>
+    <module>serilizeExecutor</module>
+  </modules>
 
 	<dependencies>
 		<dependency>
