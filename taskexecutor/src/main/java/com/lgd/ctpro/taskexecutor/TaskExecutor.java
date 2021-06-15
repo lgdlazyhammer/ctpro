@@ -39,6 +39,13 @@ public class TaskExecutor extends Thread{
 					logger.error(e.getStackTrace());
 				}
 			}
+			// 线程休眠100毫秒，避免资源利用率过高
+			try {
+				sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
