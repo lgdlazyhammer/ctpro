@@ -10,3 +10,7 @@
 /taskexecutor/target
 /taskexecutor/logs
 /target
+/actionImplentor/target
+/actionImplentor/logs
+/taskanalyzor/target
+/taskanalyzor/logs

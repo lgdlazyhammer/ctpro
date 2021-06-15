@@ -41,6 +41,9 @@ public class CtproCoreServiceManager {
 	}
 	
 	public static CtproOrder getOrder(CtproOrder ctproOrder){
+		if(ctproOrder == null){
+			return null;
+		}
 		// 设置命令的键
 		ctproOrder.setOrderId(EncryptTool.getMD5ByBase64(ctproOrder.getOrderMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -66,6 +69,9 @@ public class CtproCoreServiceManager {
 	}
 	
 	public static CtproTask getTask(CtproTask ctproTask){
+		if(ctproTask == null){
+			return null;
+		}
 		// 设置命令的键
 		ctproTask.setTaskid(EncryptTool.getMD5ByBase64(ctproTask.getTaskMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -91,6 +97,9 @@ public class CtproCoreServiceManager {
 	}
 	
 	public static CtproExecution getExecution(CtproExecution ctproExecution){
+		if(ctproExecution == null){
+			return null;
+		}
 		// 设置命令的键
 		ctproExecution.setExecutionId(EncryptTool.getMD5ByBase64(ctproExecution.getExecutionMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -116,6 +125,9 @@ public class CtproCoreServiceManager {
 	}
 	
 	public static CtproAction getAction(CtproAction ctproAction){
+		if(ctproAction == null){
+			return null;
+		}
 		// 设置命令的键
 		ctproAction.setActionid(EncryptTool.getMD5ByBase64(ctproAction.getActionMsg()));
 		TreeNode treeNode = new TreeNode();

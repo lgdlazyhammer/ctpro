@@ -22,7 +22,9 @@
 		<module>rbtree</module>
 		<module>taskexecutor</module>
 		<module>serilizeExecutor</module>
-    </modules>
+		<module>actionImplentor</module>
+		<module>taskanalyzor</module>
+  </modules>
 
 	<dependencies>
 		<dependency>

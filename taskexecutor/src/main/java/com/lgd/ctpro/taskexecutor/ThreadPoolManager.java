@@ -25,9 +25,15 @@ public class ThreadPoolManager {
 	private static Logger logger = LogManager.getLogger(ThreadPoolManager.class);
 
 	private int maxThread;
-	public Vector vector;
-	private Exchanger<String> exchanger;
-	private String dealStu;
+	private Vector vector;
+	private static ThreadPoolManager instance;
+	
+	public static synchronized ThreadPoolManager getInstance(){
+		if(instance == null){
+			instance = new ThreadPoolManager(10);
+		}
+		return instance;
+	}
 
 	public void setMaxThread(int threadCount) {
 		this.maxThread = threadCount;
