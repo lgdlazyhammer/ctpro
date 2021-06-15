@@ -31,13 +31,14 @@ public class CtproCoreServiceManager {
 		return instance;
 	}
 	
-	public static void addOrder(CtproOrder ctproOrder){
+	public static String addOrder(CtproOrder ctproOrder){
 		// 设置命令的键
 		ctproOrder.setOrderId(EncryptTool.getMD5ByBase64(ctproOrder.getOrderMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproOrder.getOrderId());
 		treeNode.setNodeSaveVal(ctproOrder);
 		orderRBTreeManager.addNode(treeNode);
+		return ctproOrder.getOrderId();
 	}
 	
 	public static CtproOrder getOrder(CtproOrder ctproOrder){
@@ -59,13 +60,14 @@ public class CtproCoreServiceManager {
 		orderRBTreeManager.deleteNode(treeNode);
 	}
 	
-	public static void addTask(CtproTask ctproTask){
+	public static String addTask(CtproTask ctproTask){
 		// 设置命令的键
 		ctproTask.setTaskid(EncryptTool.getMD5ByBase64(ctproTask.getTaskMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproTask.getTaskid());
 		treeNode.setNodeSaveVal(ctproTask);
 		taskRBTreeManager.addNode(treeNode);
+		return ctproTask.getTaskid();
 	}
 	
 	public static CtproTask getTask(CtproTask ctproTask){
@@ -87,13 +89,14 @@ public class CtproCoreServiceManager {
 		taskRBTreeManager.deleteNode(treeNode);
 	}
 	
-	public static void addExecution(CtproExecution ctproExecution){
+	public static String addExecution(CtproExecution ctproExecution){
 		// 设置命令的键
 		ctproExecution.setExecutionId(EncryptTool.getMD5ByBase64(ctproExecution.getExecutionMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproExecution.getExecutionId());
 		treeNode.setNodeSaveVal(ctproExecution);
 		executionRBTreeManager.addNode(treeNode);
+		return ctproExecution.getExecutionId();
 	}
 	
 	public static CtproExecution getExecution(CtproExecution ctproExecution){
@@ -115,13 +118,14 @@ public class CtproCoreServiceManager {
 		executionRBTreeManager.deleteNode(treeNode);
 	}
 	
-	public static void addAction(CtproAction ctproAction){
+	public static String addAction(CtproAction ctproAction){
 		// 设置命令的键
 		ctproAction.setActionid(EncryptTool.getMD5ByBase64(ctproAction.getActionMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproAction.getActionid());
 		treeNode.setNodeSaveVal(ctproAction);
 		actionRBTreeManager.addNode(treeNode);
+		return ctproAction.getActionid();
 	}
 	
 	public static CtproAction getAction(CtproAction ctproAction){

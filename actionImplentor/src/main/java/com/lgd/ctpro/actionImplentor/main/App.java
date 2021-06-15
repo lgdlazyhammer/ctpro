@@ -2,14 +2,11 @@ package com.lgd.ctpro.actionImplentor.main;
 
 import com.lgd.ctpro.actionImplentor.intrs.TestJnaLibrary;
 
-/**
- * Hello world!
- *
- */
 public class App {
 	
 	public static void main(String[] args) {
-		boolean initSDKResult = TestJnaLibrary.INSTANCE.VixHz_InitSDK();
-		System.out.println("initSDKResult = " + initSDKResult);
+		
+		boolean isPrime = TestJnaLibrary.INSTANCE.isPrime(6);
+		System.out.println("isPrime = " + isPrime);
 	}
 }

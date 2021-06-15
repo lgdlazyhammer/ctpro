@@ -72,12 +72,10 @@ public class AppTest
         System.out.println("第二个执行对象的ID：" + executionid2);
         
         CtproAction ctproAction = new CtproAction();
-        ctproAction.setActionMsg("第一个执行动作对象");
         String actionid = EncryptTool.getMD5ByBase64(ctproAction.getActionMsg());
         System.out.println("第一个执行动作对象的ID：" + actionid);
         
         CtproAction ctproAction2 = new CtproAction();
-        ctproAction2.setActionMsg("第二个执行动作对象");
         String actionid2 = EncryptTool.getMD5ByBase64(ctproAction2.getActionMsg());
         System.out.println("第二个执行动作对象的ID：" + actionid2);
         

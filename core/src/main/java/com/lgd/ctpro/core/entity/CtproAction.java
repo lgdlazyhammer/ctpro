@@ -13,7 +13,7 @@ public class CtproAction implements CtproActionIntr{
 	private static Logger logger = LogManager.getLogger(CtproAction.class);
 
 	private String actionid;
-	private String actionMsg;
+	private String actionMsg = "默认动作";
 
 	public String getActionid() {
 		return actionid;
@@ -22,15 +22,11 @@ public class CtproAction implements CtproActionIntr{
 	public void setActionid(String actionid) {
 		this.actionid = actionid;
 	}
-
+	
 	public String getActionMsg() {
 		return actionMsg;
 	}
 
-	public void setActionMsg(String actionMsg) {
-		this.actionMsg = actionMsg;
-	}
-	
 	// 执行任务
 	public void executeAction(){
 		

@@ -24,6 +24,7 @@
 		<module>serilizeExecutor</module>
 		<module>actionImplentor</module>
 		<module>taskanalyzor</module>
+		<module>orderDetailGengrator</module>
   </modules>
 
 	<dependencies>

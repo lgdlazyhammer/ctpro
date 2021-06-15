@@ -36,7 +36,6 @@ public class AppDeserilize
         ctproExecution.setExecutionMsg("第一个执行对象");
         
         CtproAction ctproAction = new CtproAction();
-        ctproAction.setActionMsg("第一个执行动作对象");
         
         
         CtproOrder ctproOrderRes = CtproCoreServiceManager.getInstance().getOrder(ctproOrder);
