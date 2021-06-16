@@ -25,7 +25,9 @@
 		<module>actionImplentor</module>
 		<module>taskanalyzor</module>
 		<module>orderDetailGenegrator</module>
-  </modules>
+		<module>voiceDetector</module>
+		<module>application</module>
+	</modules>
 
 	<dependencies>
 		<dependency>
@@ -65,7 +67,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<!-- <mainClass>fully.qualified.main</mainClass> -->
+							<mainClass>com.lgd.ctpro.application.Application</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

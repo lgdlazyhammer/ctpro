@@ -31,7 +31,7 @@ public class CtproCoreServiceManager {
 		return instance;
 	}
 	
-	public static String addOrder(CtproOrder ctproOrder){
+	public String addOrder(CtproOrder ctproOrder){
 		// 设置命令的键
 		ctproOrder.setOrderId(EncryptTool.getMD5ByBase64(ctproOrder.getOrderMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -41,7 +41,7 @@ public class CtproCoreServiceManager {
 		return ctproOrder.getOrderId();
 	}
 	
-	public static CtproOrder getOrder(CtproOrder ctproOrder){
+	public CtproOrder getOrder(CtproOrder ctproOrder){
 		if(ctproOrder == null){
 			return null;
 		}
@@ -49,10 +49,17 @@ public class CtproCoreServiceManager {
 		ctproOrder.setOrderId(EncryptTool.getMD5ByBase64(ctproOrder.getOrderMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproOrder.getOrderId());
-		return (CtproOrder) orderRBTreeManager.findNode(treeNode).getNodeSaveVal();
+		TreeNode treeNodeRes = orderRBTreeManager.findNode(treeNode);
+		if(treeNodeRes != null){
+			Object serRes = treeNodeRes.getNodeSaveVal();
+			if(serRes != null){
+				return (CtproOrder) serRes;
+			}
+		}
+		return null;
 	}
 	
-	public static void deleteOrder(CtproOrder ctproOrder){
+	public void deleteOrder(CtproOrder ctproOrder){
 		// 设置命令的键
 		ctproOrder.setOrderId(EncryptTool.getMD5ByBase64(ctproOrder.getOrderMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -60,7 +67,7 @@ public class CtproCoreServiceManager {
 		orderRBTreeManager.deleteNode(treeNode);
 	}
 	
-	public static String addTask(CtproTask ctproTask){
+	public String addTask(CtproTask ctproTask){
 		// 设置命令的键
 		ctproTask.setTaskid(EncryptTool.getMD5ByBase64(ctproTask.getTaskMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -70,18 +77,20 @@ public class CtproCoreServiceManager {
 		return ctproTask.getTaskid();
 	}
 	
-	public static CtproTask getTask(CtproTask ctproTask){
+	public CtproTask getTask(CtproTask ctproTask){
 		if(ctproTask == null){
 			return null;
 		}
-		// 设置命令的键
-		ctproTask.setTaskid(EncryptTool.getMD5ByBase64(ctproTask.getTaskMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproTask.getTaskid());
-		return (CtproTask) taskRBTreeManager.findNode(treeNode).getNodeSaveVal();
+		Object selRes = taskRBTreeManager.findNode(treeNode).getNodeSaveVal();
+		if(selRes != null){
+			return (CtproTask) selRes;
+		}
+		return null;
 	}
 	
-	public static void deleteTask(CtproTask ctproTask){
+	public void deleteTask(CtproTask ctproTask){
 		// 设置命令的键
 		ctproTask.setTaskid(EncryptTool.getMD5ByBase64(ctproTask.getTaskMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -89,7 +98,7 @@ public class CtproCoreServiceManager {
 		taskRBTreeManager.deleteNode(treeNode);
 	}
 	
-	public static String addExecution(CtproExecution ctproExecution){
+	public String addExecution(CtproExecution ctproExecution){
 		// 设置命令的键
 		ctproExecution.setExecutionId(EncryptTool.getMD5ByBase64(ctproExecution.getExecutionMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -99,18 +108,24 @@ public class CtproCoreServiceManager {
 		return ctproExecution.getExecutionId();
 	}
 	
-	public static CtproExecution getExecution(CtproExecution ctproExecution){
+	public CtproExecution getExecution(CtproExecution ctproExecution){
 		if(ctproExecution == null){
 			return null;
 		}
 		// 设置命令的键
-		ctproExecution.setExecutionId(EncryptTool.getMD5ByBase64(ctproExecution.getExecutionMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproExecution.getExecutionId());
-		return (CtproExecution) executionRBTreeManager.findNode(treeNode).getNodeSaveVal();
+		TreeNode treeNodeRes = executionRBTreeManager.findNode(treeNode);
+		if(treeNodeRes != null){
+			Object selRes = treeNodeRes.getNodeSaveVal();
+			if(selRes != null){
+				return (CtproExecution) selRes; 
+			}
+		}
+		return null;
 	}
 	
-	public static void deleteExecution(CtproExecution ctproExecution){
+	public void deleteExecution(CtproExecution ctproExecution){
 		// 设置命令的键
 		ctproExecution.setExecutionId(EncryptTool.getMD5ByBase64(ctproExecution.getExecutionMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -118,7 +133,7 @@ public class CtproCoreServiceManager {
 		executionRBTreeManager.deleteNode(treeNode);
 	}
 	
-	public static String addAction(CtproAction ctproAction){
+	public String addAction(CtproAction ctproAction){
 		// 设置命令的键
 		ctproAction.setActionid(EncryptTool.getMD5ByBase64(ctproAction.getActionMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -128,18 +143,24 @@ public class CtproCoreServiceManager {
 		return ctproAction.getActionid();
 	}
 	
-	public static CtproAction getAction(CtproAction ctproAction){
+	public CtproAction getAction(CtproAction ctproAction){
 		if(ctproAction == null){
 			return null;
 		}
 		// 设置命令的键
-		ctproAction.setActionid(EncryptTool.getMD5ByBase64(ctproAction.getActionMsg()));
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproAction.getActionid());
-		return (CtproAction) actionRBTreeManager.findNode(treeNode).getNodeSaveVal();
+		TreeNode treeNodeRes = actionRBTreeManager.findNode(treeNode);
+		if(treeNodeRes != null){
+			Object selRes = treeNodeRes.getNodeSaveVal();
+			if(selRes != null){
+				return (CtproAction) selRes;
+			}
+		}
+		return null;
 	}
 	
-	public static void deleteAction(CtproAction ctproAction){
+	public void deleteAction(CtproAction ctproAction){
 		// 设置命令的键
 		ctproAction.setActionid(EncryptTool.getMD5ByBase64(ctproAction.getActionMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -152,7 +173,7 @@ public class CtproCoreServiceManager {
 	 * @param ctproOrder
 	 * @return
 	 */
-	public static List<CtproTask> getOrderRelatedTasks(CtproOrder ctproOrder){
+	public List<CtproTask> getOrderRelatedTasks(CtproOrder ctproOrder){
 		// 设置命令的键
 		ctproOrder.setOrderId(EncryptTool.getMD5ByBase64(ctproOrder.getOrderMsg()));
 		TreeNode treeNode = new TreeNode();
@@ -181,7 +202,7 @@ public class CtproCoreServiceManager {
 	 * @param ctproOrder
 	 * @return
 	 */
-	public static List<CtproExecution> getTaskRelatedExecutions(CtproTask ctproTask){
+	public List<CtproExecution> getTaskRelatedExecutions(CtproTask ctproTask){
 		
 		TreeNode treeNode = new TreeNode();
 		treeNode.setNodeVal(ctproTask.getTaskid());
@@ -210,7 +231,7 @@ public class CtproCoreServiceManager {
 	 * 处理所有的执行动作
 	 * @param executionList
 	 */
-	public static void dealAllExecutions(List<CtproExecution> executionList){
+	public void dealAllExecutions(List<CtproExecution> executionList){
 		
 		// 冒泡排序将执行按步骤号从小到大排序
 		for(int i=0; i<executionList.size(); i++){
@@ -241,22 +262,22 @@ public class CtproCoreServiceManager {
 	}
 	
 	// 获取命令树
-	public static RBTreeManager getOrderRBTreeManager(){
+	public RBTreeManager getOrderRBTreeManager(){
 		return orderRBTreeManager;
 	}
 	
 	// 获取任务树
-	public static RBTreeManager getTaskRBTreeManager(){
+	public RBTreeManager getTaskRBTreeManager(){
 		return taskRBTreeManager;
 	}
 	
 	// 获取执行树
-	public static RBTreeManager getExecutionRBTreeManager(){
+	public RBTreeManager getExecutionRBTreeManager(){
 		return executionRBTreeManager;
 	}
 	
 	// 获取动作树
-	public static RBTreeManager getActionRBTreeManager(){
+	public RBTreeManager getActionRBTreeManager(){
 		return actionRBTreeManager;
 	}
 }

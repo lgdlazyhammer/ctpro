@@ -20,4 +20,8 @@ public class GeneExecutionEntity {
 		this.geneActionEntity = geneActionEntity;
 	}
 	
+	@Override
+	public String toString() {
+		return "GeneExecutionEntity [ctproExecution=" + ctproExecution + ", geneActionEntity=" + geneActionEntity + "]";
+	}
 }

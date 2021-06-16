@@ -13,5 +13,9 @@ public class GeneActionEntity {
 	public void setCtproAction(CtproAction ctproAction) {
 		this.ctproAction = ctproAction;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "GeneActionEntity [ctproAction=" + ctproAction + "]";
+	}
 }

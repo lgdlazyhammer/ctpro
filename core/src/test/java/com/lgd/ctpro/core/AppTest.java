@@ -102,15 +102,15 @@ public class AppTest
         CtproCoreServiceManager.getInstance().addOrder(ctproOrder);
         
         
-        List<CtproTask> ctproTasks = CtproCoreServiceManager.getOrderRelatedTasks(ctproOrder);
+        List<CtproTask> ctproTasks = CtproCoreServiceManager.getInstance().getOrderRelatedTasks(ctproOrder);
         System.out.println("第一个命令的关联任务列表：" + ctproTasks);
         
         for(int i=0; i<ctproTasks.size(); i++){
         	CtproTask ctproTaskItem = ctproTasks.get(i);
-        	List<CtproExecution> ctproExecutions = CtproCoreServiceManager.getTaskRelatedExecutions(ctproTaskItem);
+        	List<CtproExecution> ctproExecutions = CtproCoreServiceManager.getInstance().getTaskRelatedExecutions(ctproTaskItem);
             System.out.println("第"+ (i+1) +"个任务的关联执行列表：" + ctproExecutions);
             
-            CtproCoreServiceManager.dealAllExecutions(ctproExecutions);
+            CtproCoreServiceManager.getInstance().dealAllExecutions(ctproExecutions);
         }
         
     }

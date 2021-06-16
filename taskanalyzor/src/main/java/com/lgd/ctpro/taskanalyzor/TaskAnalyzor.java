@@ -36,8 +36,7 @@ public class TaskAnalyzor extends Thread{
 				// 接收待处理命令
 				String orderToDeal = DealingOrderStackManager.getInstance().getDealingOrderMsg();
 				if(orderToDeal != null){
-					AnalyzorThreadPoolManager manager = new AnalyzorThreadPoolManager(10);
-					manager.process(orderToDeal);
+					AnalyzorThreadPoolManager.getInstance().process(orderToDeal);
 				}
 			} catch (Exception e) {
 				logger.error(e.getStackTrace());

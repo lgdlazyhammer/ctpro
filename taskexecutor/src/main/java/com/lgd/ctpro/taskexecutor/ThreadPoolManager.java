@@ -56,7 +56,7 @@ public class ThreadPoolManager {
 
 		if("1".equals(ctproOrder.getOrderTyp())){
 			// 按顺序执行所有任务
-			List<CtproTask> ctproTaskList = CtproCoreServiceManager.getOrderRelatedTasks(ctproOrder);
+			List<CtproTask> ctproTaskList = CtproCoreServiceManager.getInstance().getOrderRelatedTasks(ctproOrder);
 			// 冒泡排序将执行按步骤号从小到大排序
 			for(int i=0; i<ctproTaskList.size(); i++){
 				for(int j=ctproTaskList.size()-1; j>i; j--){
@@ -104,7 +104,7 @@ public class ThreadPoolManager {
 			
 		}else if("2".equals(ctproOrder.getOrderTyp())){
 			// 所有待处理的任务列表
-	        List<CtproTask> ctproTasks = CtproCoreServiceManager.getOrderRelatedTasks(ctproOrder);
+	        List<CtproTask> ctproTasks = CtproCoreServiceManager.getInstance().getOrderRelatedTasks(ctproOrder);
 	        logger.debug("命令的关联任务列表：" + ctproTasks);
 	        
 	        // 根据列表大小定义待执行记录表

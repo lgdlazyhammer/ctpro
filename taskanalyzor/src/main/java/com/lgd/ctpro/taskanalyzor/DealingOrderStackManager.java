@@ -18,6 +18,7 @@ public class DealingOrderStackManager {
 	public static synchronized DealingOrderStackManager getInstance(){
 		if(instance == null){
 			instance = new DealingOrderStackManager();
+			orderStack = new ArrayList<String>();
 			dealingOrderStack = new Stack<String>();
 			List<TreeNode> orderTreeNodeAll = CtproCoreServiceManager.getInstance().getOrderRBTreeManager().getAllTreeNode();
 			for(int i=0; i<orderTreeNodeAll.size(); i++){
@@ -54,6 +55,9 @@ public class DealingOrderStackManager {
 	}
 	
 	public synchronized String getDealingOrderMsg(){
-		return dealingOrderStack.pop();
+		if(!dealingOrderStack.isEmpty()){
+			return dealingOrderStack.pop();
+		}
+		return null;
 	}
 }

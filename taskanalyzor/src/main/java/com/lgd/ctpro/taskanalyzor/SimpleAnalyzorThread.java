@@ -57,11 +57,13 @@ public class SimpleAnalyzorThread extends Thread {
 					this.wait();
 				} else {
 					// 执行任务
-					CtproOrder ctproOrder = DealingOrderStackManager.getInstance().getSpecifiedOrder(orderToDeal);
-					if(ctproOrder != null){
-						OrderStackManager.getInstance().addOrder(ctproOrder);
+					if(orderToDeal != null && !orderToDeal.trim().equals("")){
+						CtproOrder ctproOrder = DealingOrderStackManager.getInstance().getSpecifiedOrder(orderToDeal);
+						if(ctproOrder != null){
+							OrderStackManager.getInstance().addOrder(ctproOrder);
+						}
+						setRunning(false);
 					}
-					setRunning(false);
 				}
 			}
 		} catch (InterruptedException e) {

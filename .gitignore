@@ -16,3 +16,7 @@
 /taskanalyzor/logs
 /orderDetailGenegrator/target
 /orderDetailGenegrator/logs
+/voiceDetector/target
+/voiceDetector/logs
+/application/target
+/application/logs

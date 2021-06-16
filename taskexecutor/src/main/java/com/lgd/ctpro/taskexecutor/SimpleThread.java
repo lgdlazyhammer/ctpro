@@ -57,8 +57,8 @@ public class SimpleThread extends Thread {
 					// 执行任务
 					// 任务处理中
 					ctproTask.setStatus("processing");
-		        	List<CtproExecution> ctproExecutions = CtproCoreServiceManager.getTaskRelatedExecutions(ctproTask);
-		            CtproCoreServiceManager.dealAllExecutions(ctproExecutions);
+		        	List<CtproExecution> ctproExecutions = CtproCoreServiceManager.getInstance().getTaskRelatedExecutions(ctproTask);
+		            CtproCoreServiceManager.getInstance().dealAllExecutions(ctproExecutions);
 					setRunning(false);
 					// 任务处理完成
 					ctproTask.setStatus("done");
