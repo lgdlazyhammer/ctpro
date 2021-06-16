@@ -57,8 +57,10 @@ public class SimpleAnalyzorThread extends Thread {
 					this.wait();
 				} else {
 					// 执行任务
+					logger.debug("处理命令：" + orderToDeal);
 					if(orderToDeal != null && !orderToDeal.trim().equals("")){
 						CtproOrder ctproOrder = DealingOrderStackManager.getInstance().getSpecifiedOrder(orderToDeal);
+						logger.debug("获取的命令：" + ctproOrder);
 						if(ctproOrder != null){
 							OrderStackManager.getInstance().addOrder(ctproOrder);
 						}

@@ -11,7 +11,7 @@ import com.lgd.ctpro.core.entity.CtproOrder;
  */
 public class OrderStackManager {
 	
-	private static Stack<CtproOrder> orderStack;
+	volatile private static Stack<CtproOrder> orderStack;
 	private static OrderStackManager instance;
 	
 	// 单例获取命令栈管理对象
