@@ -55,6 +55,8 @@ public class DisplayOrderTaskStatusThread extends Thread {
 					}
 				}
 			}else{
+				// 精简跟踪列表
+				simplifyOrderTaskRecorder();
 				// 只显示前10条命令任务
 				for(int i=0; i<10; i++){
 					OrderTaskDisplayEntity orderTaskDisplayEntity = resList.get(i);
@@ -81,4 +83,39 @@ public class DisplayOrderTaskStatusThread extends Thread {
 			}
 		}
 	}
+	
+	public void simplifyOrderTaskRecorder(){
+
+		List<OrderTaskDisplayEntity> resList = OrderTaskStatusRecorder.getInstance().getOrderStatusList();
+		// 是否全部在处理中
+		boolean isAllOrderProcessing = false;
+		while(resList.size() > 10 && !isAllOrderProcessing){
+			// 便利寻找并删除已经完成的任务
+			for(int i=0; i<resList.size(); i++){
+				OrderTaskDisplayEntity orderTaskDisplayEntity = resList.get(i);
+				// 是否全部在处理中
+				boolean isAllTaskDone = true;
+				
+				List<CtproTask> taskList = orderTaskDisplayEntity.getTaskList();
+				for(int j=0; j<taskList.size(); j++){
+					CtproTask ctproTask = taskList.get(j);
+					logger.debug(ctproTask);
+					if(!ctproTask.getStatus().equals("done")){
+						isAllTaskDone = false;
+						break;
+					}
+				}
+				
+				if(isAllTaskDone){
+					resList.remove(i);
+					break;
+				}
+			}
+			// 便利完成并没有发现进行中任务，所有命令处理中
+			isAllOrderProcessing = true;
+		}
+		// 重新赋值列表
+		OrderTaskStatusRecorder.getInstance().setOrderStatusList(resList);
+	}
+	
 }

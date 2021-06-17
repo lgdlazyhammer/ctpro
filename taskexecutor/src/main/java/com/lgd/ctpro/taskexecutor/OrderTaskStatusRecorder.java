@@ -21,5 +21,9 @@ public class OrderTaskStatusRecorder {
 	public List<OrderTaskDisplayEntity> getOrderStatusList() {
 		return orderStatusList;
 	}
+
+	public void setOrderStatusList(List<OrderTaskDisplayEntity> orderStatusList) {
+		OrderTaskStatusRecorder.orderStatusList = orderStatusList;
+	}
 	
 }
