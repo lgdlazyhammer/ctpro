@@ -11,6 +11,7 @@ import com.lgd.ctpro.core.entity.CtproExecution;
 import com.lgd.ctpro.core.entity.CtproOrder;
 import com.lgd.ctpro.core.entity.CtproTask;
 import com.lgd.ctpro.core.service.CtproCoreServiceManager;
+import com.lgd.ctpro.taskexecutor.entity.OrderTaskDisplayEntity;
 
 /**
  * 
@@ -54,6 +55,11 @@ public class ThreadPoolManager {
 
 	public void process(CtproOrder ctproOrder) {
 
+		// 将任务同时加入到监控对象里
+		OrderTaskDisplayEntity orderTaskDisplayEntity = new OrderTaskDisplayEntity();
+		orderTaskDisplayEntity.setCtproOrder(ctproOrder);
+		orderTaskDisplayEntity.setThreadId(String.valueOf(Thread.currentThread().getId()));
+		// 按顺序执行任务
 		if("1".equals(ctproOrder.getOrderTyp())){
 			// 按顺序执行所有任务
 			List<CtproTask> ctproTaskList = CtproCoreServiceManager.getInstance().getOrderRelatedTasks(ctproOrder);
@@ -77,6 +83,8 @@ public class ThreadPoolManager {
 							SimpleThread currentThread = (SimpleThread) vector.get(i);
 							if (!currentThread.isRunning()) {
 								CtproTask ctproTask = ctproTaskList.get(k);
+								// 将任务加入到监控对象里
+								orderTaskDisplayEntity.getTaskList().add(ctproTask);
 								logger.debug("thread " + i + " is processing: " + ctproTask);
 								currentThread.setCtproTask(ctproTask);
 								currentThread.setRunning(true);
@@ -116,6 +124,8 @@ public class ThreadPoolManager {
 						for (int i = 0; i < vector.size(); i++) {
 							SimpleThread currentThread = (SimpleThread) vector.get(i);
 							if (!currentThread.isRunning()) {
+								// 将任务加入到监控对象里
+								orderTaskDisplayEntity.getTaskList().add(ctproTasks.get(k));
 								logger.debug("thread " + i + " is processing: " + ctproTasks.get(k));
 								currentThread.setCtproTask(ctproTasks.get(k));
 								currentThread.setRunning(true);
@@ -134,5 +144,8 @@ public class ThreadPoolManager {
 	        }
 	        
 		}
+		
+		// 将任务同时加入到监控对象里
+		OrderTaskStatusRecorder.getInstance().getOrderStatusList().add(orderTaskDisplayEntity);
 	}
 }

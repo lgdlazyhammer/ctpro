@@ -1,6 +1,6 @@
 package com.lgd.ctpro.desktopApp;
 
-import java.awt.Event;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,8 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,7 +52,7 @@ public class Application {
 		// 创建 JFrame 实例
 		JFrame frame = new JFrame("CTPRO");
 		// Setting the width and height of frame
-		frame.setSize(350, 200);
+		frame.setSize(700, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		/*
@@ -90,9 +89,23 @@ public class Application {
 		panel.add(stopButton);
 		
 		final JLabel systemStatus = new JLabel("服务状态");
-		systemStatus.setBounds(10, 80, 600, 25);
+		systemStatus.setBounds(10, 60, 600, 25);
 		panel.add(systemStatus);
-		
+
+		 // 创建一个 5 行 10 列的文本区域
+        final JTextArea textArea = new JTextArea(10, 10);
+        textArea.setBounds(10, 100, 600, 600);
+        // 设置自动换行
+        textArea.setLineWrap(true);
+        textArea.setEditable(false);
+        // 添加到内容面板
+        panel.add(textArea);
+        
+		// 启动任务跟踪线程
+		final DisplayOrderTaskStatusThread displayOrderTaskStatusThread = new DisplayOrderTaskStatusThread();
+		displayOrderTaskStatusThread.startStatusRecorder();
+		displayOrderTaskStatusThread.setTextArea(textArea);
+		displayOrderTaskStatusThread.start();
 		
 		startButton.addActionListener(new ActionListener(){
 
@@ -184,11 +197,14 @@ public class Application {
 				mockSendCommandThread.stopMockSender();
 				executorThread.stopExecutor();
 				taskAnalyzor.stopAnalyzor();
+				displayOrderTaskStatusThread.stopStatusRecorder();
 				
 				SerlizorIntr serlizorIntr = new FileSerilizor();
 	        	serlizorIntr.serilize();
 				
 				systemStatus.setText("服务已经停止");
+		        
+		        textArea.setText("");
 			}
 		});
 		
