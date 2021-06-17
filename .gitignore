@@ -20,3 +20,5 @@
 /voiceDetector/logs
 /application/target
 /application/logs
+/desktopApp/target
+/desktopApp/logs

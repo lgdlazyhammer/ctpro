@@ -27,6 +27,7 @@
 		<module>orderDetailGenegrator</module>
 		<module>voiceDetector</module>
 		<module>application</module>
+		<module>desktopApp</module>
 	</modules>
 
 	<dependencies>
