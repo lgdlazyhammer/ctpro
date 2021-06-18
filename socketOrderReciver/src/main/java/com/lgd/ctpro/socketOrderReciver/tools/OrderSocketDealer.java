@@ -11,15 +11,27 @@ import org.apache.logging.log4j.Logger;
 
 import com.lgd.ctpro.taskanalyzor.DealingOrderStackManager;
 
-public class OrderSocketDealer implements Runnable {
+public class OrderSocketDealer extends Thread {
 
 	private static Logger logger = LogManager.getLogger(OrderSocketDealer.class);
+	
+	private boolean isOn;// 任务执行器是否开启
 
 	private Socket socket;
 	final private String endMsg = "10100101";
 
 	public OrderSocketDealer(Socket socket) {
 		this.socket = socket;
+	}
+	
+	// 开始任务执行器
+	public void startOrderSocketDealer(){
+		isOn = true;
+	}
+	
+	// 停止任务执行器
+	public void stopOrderSocketDealer(){
+		isOn = false;
 	}
 	
 	@Override
@@ -32,7 +44,7 @@ public class OrderSocketDealer implements Runnable {
 
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String message = null;
-			while (true) {
+			while (isOn) {
 				message = reader.readLine();
 				if (endMsg.equals(message)) {
 					// 终止词终止对话

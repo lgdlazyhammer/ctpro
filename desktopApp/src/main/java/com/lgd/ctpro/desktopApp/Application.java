@@ -183,6 +183,7 @@ public class Application {
 		        taskAnalyzor.start();
 				
 				orderSockerServer = new OrderSockerServer();
+				orderSockerServer.startOrderSocketServer();
 				orderSockerServer.start();
 				
 				// 模拟命令发起器开启
@@ -210,7 +211,7 @@ public class Application {
 				executorThread.stopExecutor();
 				taskAnalyzor.stopAnalyzor();
 				displayOrderTaskStatusThread.stopStatusRecorder();
-				orderSockerServer.stop();
+				orderSockerServer.stopOrderSocketServer();
 				
 				SerlizorIntr serlizorIntr = new FileSerilizor();
 	        	serlizorIntr.serilize();
