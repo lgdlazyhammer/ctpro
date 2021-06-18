@@ -28,7 +28,7 @@ public class MockSendCommandThread extends Thread {
         	try {
 				Thread.sleep(3000);
 			} catch (InterruptedException ee) {
-				ee.printStackTrace();
+				logger.error(ee.getStackTrace());
 			}
 		}
 	}

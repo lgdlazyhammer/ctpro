@@ -93,7 +93,7 @@ public class ThreadPoolManager {
 									try {
 										Thread.sleep(100);
 									} catch (InterruptedException e) {
-										e.printStackTrace();
+										logger.error(e.getStackTrace());
 									}
 									if(ctproTask.getStatus() == "done"){
 										taskProcessing = false;

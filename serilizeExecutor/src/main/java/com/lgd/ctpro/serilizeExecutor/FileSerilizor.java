@@ -46,7 +46,7 @@ public class FileSerilizor implements SerlizorIntr{
 		try {
 			properties.load(in);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getStackTrace());
 		}
 		// 获取key对应的value值
 		fileGenLoc = properties.getProperty("fileSerilizeLocation");
@@ -105,7 +105,7 @@ public class FileSerilizor implements SerlizorIntr{
 		try {
 			destFile.createNewFile();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getStackTrace());
 		}
 
 		// 将字节码写进文件
@@ -114,7 +114,7 @@ public class FileSerilizor implements SerlizorIntr{
 			try {
 				writeFileByBytes(fileLoc, itemBytes, true);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.getStackTrace());
 			}
 		}
 	}
@@ -181,11 +181,9 @@ public class FileSerilizor implements SerlizorIntr{
 				}
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getStackTrace());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getStackTrace());
 		}
 	}
 

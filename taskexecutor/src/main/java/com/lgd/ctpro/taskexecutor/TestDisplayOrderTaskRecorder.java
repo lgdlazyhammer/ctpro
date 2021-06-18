@@ -31,8 +31,7 @@ public class TestDisplayOrderTaskRecorder extends Thread {
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e.getStackTrace());
 			}
 		}
 	}
