@@ -27,6 +27,8 @@ import com.lgd.ctpro.serilizeExecutor.FileSerilizor;
 import com.lgd.ctpro.serilizeExecutor.SerlizorIntr;
 import com.lgd.ctpro.taskanalyzor.TaskAnalyzor;
 import com.lgd.ctpro.taskexecutor.TaskExecutor;
+import com.lgd.ctpro.socketOrderReciver.tools.OrderSockerServer;
+import com.lgd.ctpro.socketOrderReciver.tools.TestClientSendOrderThread;
 
 public class Application {
 	
@@ -34,6 +36,8 @@ public class Application {
 	private static TaskExecutor executorThread;
 	private static TaskAnalyzor taskAnalyzor;
 	private static MockSendCommandThread mockSendCommandThread;
+	private static OrderSockerServer orderSockerServer;
+	private static TestClientSendOrderThread testClientSendOrderThread;
 	
 
 	public static void main(String[] args) {
@@ -178,10 +182,17 @@ public class Application {
 		        taskAnalyzor.startAnalyzor();
 		        taskAnalyzor.start();
 				
-		        // 模拟命令发起器开启
-				mockSendCommandThread = new MockSendCommandThread();
+				orderSockerServer = new OrderSockerServer();
+				orderSockerServer.start();
+				
+				// 模拟命令发起器开启
+				testClientSendOrderThread = new TestClientSendOrderThread();
+				testClientSendOrderThread.startClientSender();
+				testClientSendOrderThread.start();
+				
+				/*mockSendCommandThread = new MockSendCommandThread();
 				mockSendCommandThread.startMockSender();
-				mockSendCommandThread.start();
+				mockSendCommandThread.start();*/
 
 				systemStatus.setText("服务已经启动");
 			}
@@ -194,10 +205,12 @@ public class Application {
 			public void actionPerformed(ActionEvent e) {
 				logger.debug("动作为：" + e.getActionCommand());
 				// 停止服务，将命令结构保存
-				mockSendCommandThread.stopMockSender();
+				// mockSendCommandThread.stopMockSender();
+				testClientSendOrderThread.stopClientSender();
 				executorThread.stopExecutor();
 				taskAnalyzor.stopAnalyzor();
 				displayOrderTaskStatusThread.stopStatusRecorder();
+				orderSockerServer.stop();
 				
 				SerlizorIntr serlizorIntr = new FileSerilizor();
 	        	serlizorIntr.serilize();

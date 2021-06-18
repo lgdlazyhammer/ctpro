@@ -9,9 +9,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.lgd.ctpro</groupId>
-	<artifactId>desktopApp</artifactId>
+	<artifactId>socketOrderReciver</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>desktopApp</name>
+	<name>socketOrderReciver</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,12 +25,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.lgd.ctpro</groupId>
-			<artifactId>application</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.lgd.ctpro</groupId>
-			<artifactId>socketOrderReciver</artifactId>
+			<artifactId>taskanalyzor</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

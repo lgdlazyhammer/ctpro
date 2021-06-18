@@ -28,6 +28,7 @@
 		<module>voiceDetector</module>
 		<module>application</module>
 		<module>desktopApp</module>
+		<module>socketOrderReciver</module>
 	</modules>
 
 	<dependencies>
