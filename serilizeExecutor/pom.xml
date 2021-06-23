@@ -25,7 +25,12 @@
 		</dependency>
 		<dependency>
 			<groupId>com.lgd.ctpro</groupId>
-			<artifactId>taskexecutor</artifactId>
+			<artifactId>rbtree</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lgd.ctpro</groupId>
+			<artifactId>core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

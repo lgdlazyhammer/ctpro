@@ -26,10 +26,5 @@
 			<artifactId>taskexecutor</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.lgd.ctpro</groupId>
-			<artifactId>serilizeExecutor</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 </project>

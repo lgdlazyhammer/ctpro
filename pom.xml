@@ -20,11 +20,11 @@
 		<module>parent</module>
 		<module>core</module>
 		<module>rbtree</module>
-		<module>taskexecutor</module>
 		<module>serilizeExecutor</module>
-		<module>actionImplentor</module>
+		<module>taskexecutor</module>
 		<module>taskanalyzor</module>
 		<module>orderDetailGenegrator</module>
+		<module>actionImplentor</module>
 		<module>voiceDetector</module>
 		<module>application</module>
 		<module>desktopApp</module>
